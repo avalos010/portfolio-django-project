@@ -1,15 +1,14 @@
 <!doctype html>
 <html lang="en">
+{% load staticfiles %}
 
 <head>
-    {% load staticfiles %}
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.5">
-    <title>Portfolio</title>
+    <title>{{blog.title}}</title>
 
 
     <!-- Bootstrap core CSS -->
@@ -21,7 +20,7 @@
 <body>
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="{%  url 'home'  %}">JLuis Avalos</a>
+            <a class="navbar-brand" href="#">JLuis Avalos</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
                 aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -29,49 +28,31 @@
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav ml-auto">
                     <a class="nav-item nav-link" href="#">Twitter</a>
-                    <a class="nav-item nav-link" href="{% static  'resume.pdf'%}">Resume</a>
-                    <a class="nav-item nav-link" href="{%  url 'allblogs'  %}">Blog</a>
+                    <a class="nav-item nav-link" href="{% static 'resume.pdf' %}">Resume</a>
+                    <a class="nav-item nav-link active" href="">Blog</a>
                 </div>
             </div>
         </nav>
     </header>
 
     <main role="main">
+        <div class="container text-center">
+            <h1 class="">{{blog.title}}</h1>
+            <small>
+                {{blog.pub_date_pretty}}
+            </small>
+            <img class="mt-3 mb-3" style="max-width: 100%" src="{{blog.image.url}}" />
 
-        <section class="jumbotron text-center">
-            <div class="container">
-                <h1 class="jumbotron-heading">Hi, Im JLuis</h1>
-                <p class="lead text-muted">Hey, My name is JLuis and I Love to make django websites it is the bomb.</p>
-                <p>
-                    <a href="#" class="btn btn-dark">Email Me</a>
-                </p>
-                <img width="200" class="img-thumbnail" src="{%  static 'me.png'  %}">
-            </div>
-        </section>
-        <div class="album py-5 bg-light">
-            <div class="container">
-
-                <div class="row">
-
-                    {% for job in jobs.all %}
-                    <div class="col-md-4">
-                        <div class="card mb-4 shadow-sm">
-                            <img class="card-img-top" src="{{ job.image.url }}" alt="Card image cap" />
-                            <div class="card-body">
-                                <p class="card-text">{{job.summary}}</p>
-                            </div>
-                        </div>
-                    </div>
-                    {% endfor %}
-                </div>
-            </div>
-        </div>
-
+            <p>{{blog.body}}</p>
     </main>
+    </div>
 
     <footer class="text-muted">
         <div class="container text-center">
             <p>© JLuis Avalos {% now "Y" %}</p>
+
+
+
         </div>
     </footer>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
